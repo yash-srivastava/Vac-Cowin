@@ -49,7 +49,7 @@ def getPincodes():
     return locations
 
 
-def vaccine_dose2_duedate(vaccine_type):
+def vaccineDose2DueDate(vaccine_type):
     """
     This function
         1.Checks the vaccine type
@@ -168,7 +168,7 @@ def getBeneficiaries(request_header):
 
             if beneficiary["vaccination_status"] == "Partially Vaccinated":
                 vaccinated = True
-                days_remaining = vaccine_dose2_duedate(beneficiary["vaccine"])
+                days_remaining = vaccineDose2DueDate(beneficiary["vaccine"])
 
                 dose1_date = datetime.datetime.strptime(
                     beneficiary["dose1_date"], "%d-%m-%Y"
@@ -228,7 +228,7 @@ def getBeneficiaries(request_header):
 
         for beneficiary in reqd_beneficiaries:
             if vaccinated:
-                days_remaining = vaccine_dose2_duedate(beneficiary["vaccine"])
+                days_remaining = vaccineDose2DueDate(beneficiary["vaccine"])
 
                 dose1_date = datetime.datetime.strptime(
                     beneficiary["dose1_date"], "%d-%m-%Y"

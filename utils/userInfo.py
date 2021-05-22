@@ -217,24 +217,32 @@ def collectUserDetails(request_header):
         due_date = [beneficiary["dose2_due_date"] for beneficiary in beneficiary_dtls]
         dates = Counter(due_date)
         if len(dates.keys()) != 1:
+            print(f"{Fore.RED}", end="")
             print(
                 f"All beneficiaries in one attempt should have the same due date. Found {len(dates.keys())}"
             )
             os.system("pause")
+            print(f"{Fore.RESET}", end="")
             sys.exit(1)
 
         if (
             datetime.datetime.strptime(due_date[0], "%d-%m-%Y")
             - datetime.datetime.strptime(str(today), "%d-%m-%Y")
         ).days > 0:
-            print("\nHaven't reached the due date for your second dose")
+            print(f"{Fore.RED}", end="")
+            print("\nYou Haven't reached the Due Date for your Second Dose yet...")
+            print(f"{Fore.YELLOW}", end="")
             search_due_date = input(
-                "\nDo you want to search for the week starting from your due date(y/n) Default n:"
+                "\nDo you want to Search for the Week starting from your Due Date ? (y/n) Default n:"
             )
             if search_due_date == "y":
 
                 start_date = due_date[0]
             else:
+                print(f"{Fore.RED}", end="")
+                print("Exiting the Program...")
+                print("Please Wait...")
+                print(f"{Fore.RESET}", end="")
                 os.system("pause")
                 sys.exit(1)
     else:
