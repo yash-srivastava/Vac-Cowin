@@ -247,9 +247,11 @@ def collectUserDetails(request_header):
                 sys.exit(1)
     else:
         # Get search start date
+        print(f"{Fore.YELLOW}", end="")
         start_date = input(
-            "\nSearch for next seven day starting from when?\nUse 1 for today, 2 for tomorrow, or provide a date in the format dd-mm-yyyy. Default 2: "
+            "\nSearch for the next Seven Days starting from when?\nUse 1 for Today, 2 for Tomorrow, or provide a Date in the format dd-mm-yyyy. Default 2: "
         )
+        print(f"{Fore.RESET}", end="")
         if not start_date:
             start_date = 2
         elif start_date in ["1", "2"]:
@@ -259,7 +261,7 @@ def collectUserDetails(request_header):
                 datetime.datetime.strptime(start_date, "%d-%m-%Y")
             except ValueError:
                 start_date = 2
-                print("Invalid Date! Proceeding with tomorrow.")
+                print("Invalid Date! Proceeding with Tomorrow's Date.")
 
     # Get preference of Free/Paid option
     fee_type = getFeeTypePreference()
